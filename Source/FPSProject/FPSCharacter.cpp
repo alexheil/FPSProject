@@ -35,7 +35,10 @@ void AFPSCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	InputComponent->BindAxis("MoveForward", this, &AFPSCharacter::MoveForward);
     InputComponent->BindAxis("MoveRight", this, &AFPSCharacter::MoveRight);
-
+	InputComponent->BindAxis("Turn", this, &AFPSCharacter::AddControllerYawInput);
+   	InputComponent->BindAxis("LookUp", this, &AFPSCharacter::AddControllerPitchInput);
+	InputComponent->BindAction("Jump", IE_Pressed, this, &AFPSCharacter::OnStartJump);
+	InputComponent->BindAction("Jump", IE_Released, this, &AFPSCharacter::OnStopJump);
 }
 
 void AFPSCharacter::MoveForward(float Value)
@@ -44,7 +47,7 @@ void AFPSCharacter::MoveForward(float Value)
 	{
 		// find out which way is forward
 		FRotator Rotation = Controller->GetControlRotation();
-		// Limit pitch when walking or falling
+		// limit pitch when walking or falling
 		if (GetCharacterMovement()->IsMovingOnGround() || GetCharacterMovement()->IsFalling() )
 		{
 			Rotation.Pitch = 0.0f;
@@ -65,4 +68,14 @@ void AFPSCharacter::MoveRight(float Value)
 		// add movement in that direction
 		AddMovementInput(Direction, Value);
 	}
+}
+
+void AFPSCharacter::OnStartJump()
+{
+	bPressedJump = true;
+}
+
+void AFPSCharacter::OnStopJump()
+{
+	bPressedJump = false;
 }

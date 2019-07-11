@@ -29,8 +29,14 @@ public:
 
 	UFUNCTION()
     void MoveForward(float Val);
-    //handles strafing
+    // handles strafing
     UFUNCTION()
     void MoveRight(float Val);
+
+	UFUNCTION()
+	void OnStartJump();
+	// clears jump flag when key is released
+	UFUNCTION()
+	void OnStopJump();
 
 };
