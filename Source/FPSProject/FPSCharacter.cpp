@@ -88,7 +88,8 @@ AFPSCharacter::AFPSCharacter(const FObjectInitializer& ObjectInitializer)
 	FirstPersonCameraComponent->AttachTo(RootComponent);
 
 	// Position the camera a bit above the eyes
-	FirstPersonCameraComponent->RelativeLocation = FVector(0, 0, 50.0f + BaseEyeHeight);
+	FirstPersonCameraComponent->RelativeLocation = FVector(0, 0, BaseEyeHeight);
 	// Allow the pawn to control rotation.
 	FirstPersonCameraComponent->bUsePawnControlRotation = true;
+
 }
