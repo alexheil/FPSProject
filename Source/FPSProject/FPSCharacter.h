@@ -43,7 +43,7 @@ public:
 	AFPSCharacter(const FObjectInitializer& ObjectInitializer);
 
 	/** First person camera *///
-	UPROPERTY(VisibleAnywhere, Category=Camera)
-	UCameraComponent* FirstPersonCameraComponent;
+	// /// UPROPERTY(VisibleAnywhere, Category=Camera)
+	// /// UCameraComponent* FirstPersonCameraComponent;
 
 };
