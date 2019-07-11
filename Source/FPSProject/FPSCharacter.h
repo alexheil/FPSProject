@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Camera/CameraComponent.h"
 #include "FPSCharacter.generated.h"
 
 UCLASS()
@@ -26,7 +27,7 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
 	UFUNCTION()
     void MoveForward(float Val);
     // handles strafing
@@ -38,5 +39,11 @@ public:
 	// clears jump flag when key is released
 	UFUNCTION()
 	void OnStopJump();
+
+	AFPSCharacter(const FObjectInitializer& ObjectInitializer);
+
+	/** First person camera */
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Camera)
+	UCameraComponent* FirstPersonCameraComponent;
 
 };
